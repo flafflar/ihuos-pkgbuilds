@@ -5,7 +5,7 @@ pkgdesc="Installer for IHU-OS, based on Calamares"
 arch=("x86_64")
 url="https://calamares.io"
 license=("GPL")
-depends=("boost-libs>=1.55" "qt5-base>=5.9" "kcoreaddons" "kpmcore>=3.3" "kio" "yaml-cpp>=0.5.1" "python>=3.3")
+depends=("boost-libs>=1.55" "qt5-base>=5.9" "kcoreaddons" "kpmcore>=3.3" "kio" "yaml-cpp>=0.5.1" "python>=3.3" "ckbcomp")
 makedepends=("cmake>=3.3" "extra-cmake-modules>=5.18" "boost>=1.55" "qt5-tools" "git")
 checkdepends=("python-toml")
 optdepends=()
