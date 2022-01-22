@@ -11,7 +11,7 @@ checkdepends=("python-toml")
 optdepends=()
 backup=()
 source=("git+https://github.com/flafflar/calamares.git#branch=pacstrap"
-	"git+https://github.com/flafflar/ihuos-calamares-config.git#commit=91c1f75929639576eac37a4b4bc5401c9d35ac5d"
+	"git+https://github.com/flafflar/ihuos-calamares-config.git#commit=4f66d2c59e3ca579005b30a9f1cc3c93406eca70"
 )
 sha256sums=("SKIP" "SKIP")
 
@@ -39,6 +39,7 @@ package() {
 
 	install -Dm644 settings.conf -t "$pkgdir/usr/share/calamares/"
 
+	install -Dm644 chroot-mount.conf -t "$pkgdir/usr/share/calamares/modules/"
 	install -Dm644 fstab.conf -t "$pkgdir/usr/share/calamares/modules/"
 	install -Dm644 initcpio.conf -t "$pkgdir/usr/share/calamares/modules/"
 	install -Dm644 locale.conf -t "$pkgdir/usr/share/calamares/modules/"
