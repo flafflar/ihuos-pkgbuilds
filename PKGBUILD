@@ -1,6 +1,6 @@
 pkgname=ihuos-calamares
 pkgver=3.2.49.1
-pkgrel=1
+pkgrel=3
 pkgdesc="Installer for IHU-OS, based on Calamares"
 arch=("x86_64")
 url="https://calamares.io"
@@ -11,7 +11,7 @@ checkdepends=("python-toml")
 optdepends=()
 backup=()
 source=("git+https://github.com/flafflar/calamares.git#branch=pacstrap"
-	"git+https://github.com/flafflar/ihuos-calamares-config.git#commit=4f66d2c59e3ca579005b30a9f1cc3c93406eca70"
+	"git+https://github.com/flafflar/ihuos-calamares-config.git#commit=915a58de29af4b7616df40039311631abb1bfe2d"
 )
 sha256sums=("SKIP" "SKIP")
 
@@ -39,6 +39,7 @@ package() {
 
 	install -Dm644 settings.conf -t "$pkgdir/usr/share/calamares/"
 
+	install -Dm644 bootloader.conf -t "$pkgdir/usr/share/calamares/modules/"
 	install -Dm644 chroot-mount.conf -t "$pkgdir/usr/share/calamares/modules/"
 	install -Dm644 fstab.conf -t "$pkgdir/usr/share/calamares/modules/"
 	install -Dm644 initcpio.conf -t "$pkgdir/usr/share/calamares/modules/"
@@ -47,4 +48,7 @@ package() {
 	install -Dm644 partition.conf -t "$pkgdir/usr/share/calamares/modules/"
 	install -Dm644 services.conf -t "$pkgdir/usr/share/calamares/modules/"
 	install -Dm644 users.conf -t "$pkgdir/usr/share/calamares/modules/"
+
+	install -d "$pkgdir/usr/share/calamares/branding/ihuos/"
+	install -Dm644 branding/* "$pkgdir/usr/share/calamares/branding/ihuos/"
 }
