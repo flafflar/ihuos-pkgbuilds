@@ -1,6 +1,6 @@
 pkgname=ihuos-calamares
 pkgver=3.2.49.1
-pkgrel=3
+pkgrel=5
 pkgdesc="Installer for IHU-OS, based on Calamares"
 arch=("x86_64")
 url="https://calamares.io"
@@ -11,7 +11,7 @@ checkdepends=("python-toml")
 optdepends=()
 backup=()
 source=("git+https://github.com/flafflar/calamares.git#branch=pacstrap"
-	"git+https://github.com/flafflar/ihuos-calamares-config.git#commit=915a58de29af4b7616df40039311631abb1bfe2d"
+	"git+https://github.com/flafflar/ihuos-calamares-config.git#commit=abca9d7755c716332736a64b426887d30c92a5b8"
 )
 sha256sums=("SKIP" "SKIP")
 
