@@ -1,5 +1,5 @@
 # Maintainer: Achilleas Michailidis <achmichail@gmail.com>
-# Contributor:  Gabriel Souza Franco <Z2FicmllbGZyYW5jb3NvdXphQGdtYWlsLmNvbQ==>
+# Contributor: Gabriel Souza Franco <Z2FicmllbGZyYW5jb3NvdXphQGdtYWlsLmNvbQ==>
 # Contributor: Nico Rumpeltin <$forename at $surname dot de>
 # Contributor: Matthias Blaicher <matthias at blaicher dot com>
 # Contributor: Danny Dutton <duttondj@vt.edu>
@@ -8,7 +8,7 @@
 #
 pkgname=quartus
 # Keep dot in _patchver
-_mainver=20.1; _patchver=.1; _buildver=720
+_mainver=19.1; _patchver=.0; _buildver=670
 pkgver=${_mainver}${_patchver}.${_buildver}
 pkgrel=1
 pkgdesc="Quartus Prime Lite design software for Intel FPGAs"
@@ -29,10 +29,10 @@ optdepends=("eclipse: For Nios II EDS")
 _base_url="https://download.altera.com/akdlm/software/acdsinst"
 source=("${_base_url}/${_mainver}std${_patchver/.0/}/${_buildver}/ib_installers/QuartusLiteSetup-${pkgver}-linux.run"
         'quartus.sh' 'quartus.desktop' '51-usbblaster.rules')
-md5sums=('3a5ca38169bcff285611789850b5af83'
-         '60fbfafbaa565af5e97b2904914e41e7'
-         'c5a8f6310ade971f07e5ee6c4e338054'
-         'f5744dc4820725b93917e3a24df13da9')
+sha1sums=('ea512441cd6658c3e0225c85ccc09417110ab572'
+          '43429b170804b3960794f8c8c47bc183c8c8a14d'
+          '2c7a5e22fc35eb67b0d5112a42642de341facb79'
+          '66c4548944467103198f37be6ad2d8dd826020a0')
 
 options=(!strip !debug) # Stripping will takes ages, I'd avoid it
 PKGEXT=".pkg.tar.zst" # ZSTD is fast enough for compression
@@ -58,9 +58,6 @@ package() {
 
     # Remove useless unzip binaries
     find "${pkgdir}${_alteradir}" \( -name "unzip" -or -name "unzip32" \) -delete
-
-    # Remove duplicated file from help
-    rm -r "${pkgdir}${_alteradir}/quartus/common/help/webhelp"
 
     # Fix missing permissions
     find "${pkgdir}${_alteradir}" \! -perm /o+rwx -exec chmod o=g {} \;
