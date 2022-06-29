@@ -6,7 +6,7 @@
 
 pkgname=quartus-help
 # Keep dot in _patchver
-_mainver=20.1; _patchver=.1; _buildver=720
+_mainver=19.1; _patchver=.0; _buildver=670
 # Latest HLS compiler was only released with Pro numbering
 # _promain=20.3; _propatch=.0; _probuild=158; _prover=${_promain}${_propatch}.${_probuild}
 pkgver=${_mainver}${_patchver}.${_buildver}
@@ -21,7 +21,7 @@ _inteldir="/opt/intelFPGA/${_mainver}"
 
 _base_url="https://download.altera.com/akdlm/software/acdsinst"
 source=("${_base_url}/${_mainver}std${_patchver/.0/}/${_buildver}/ib_installers/QuartusHelpSetup-${pkgver}-linux.run")
-sha256sums=('17e1d546dcfae51ff079ec9b1225993608c192fe7c89b67788a9fed5029ac1c3')
+sha1sums=('e196472ea099d17285f1969c7abcff26c06f4181')
 
 options=('!strip' '!debug') # Stripping will takes ages, I'd avoid it
 PKGEXT=".pkg.tar.zst" # ZSTD is fast enough for compression
