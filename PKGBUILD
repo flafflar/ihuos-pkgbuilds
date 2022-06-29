@@ -6,7 +6,7 @@
 
 pkgname=quartus-devinfo-max10
 # Keep dot in _patchver
-_mainver=20.1; _patchver=.1; _buildver=720
+_mainver=19.1; _patchver=.0; _buildver=670
 pkgver=${_mainver}${_patchver}.${_buildver}
 pkgrel=1
 pkgdesc="Quartus Prime Lite - devinfo files for max10"
@@ -26,7 +26,7 @@ provides=(quartus-devinfo)
 
 source=("https://download.altera.com/akdlm/software/acdsinst/${_mainver}std${_patchver/.0/}/${_buildver}/ib_installers/max10-${pkgver}.qdz")
 noextract=("max10-${pkgver}.qdz") # Will extract directly to pkgdir
-md5sums=('fea82df785421cd0c0bf75ca94790804')
+sha1sums=('cd99cd6e153867499e6a460d89661940f59ac60a')
 
 _alteradir="/opt/intelFPGA/${_mainver}"
 
