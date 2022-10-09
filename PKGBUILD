@@ -6,7 +6,7 @@
 #
 # NOTE: If you plan on using the usbblaster make sure you are member of the plugdev group.
 #
-pkgname=quartus
+pkgname=quartus-lite
 # Keep dot in _patchver
 _mainver=19.1; _patchver=.0; _buildver=670
 pkgver=${_mainver}${_patchver}.${_buildver}
