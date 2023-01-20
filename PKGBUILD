@@ -8,7 +8,7 @@
 #
 pkgname=quartus-lite
 # Keep dot in _patchver
-_mainver=19.1; _patchver=.0; _buildver=670
+_mainver=20.1; _patchver=.1; _buildver=720
 pkgver=${_mainver}${_patchver}.${_buildver}
 pkgrel=1
 pkgdesc="Quartus Prime Lite design software for Intel FPGAs"
@@ -23,13 +23,14 @@ depends=('ld-lsb' 'lib32-expat' 'lib32-fontconfig' 'lib32-freetype2' 'lib32-glib
          'lib32-gtk2' 'lib32-libcanberra' 'lib32-libpng' 'lib32-libice' 'lib32-libsm'
          'lib32-util-linux' 'lib32-ncurses' 'lib32-ncurses5-compat-libs' 'lib32-zlib'
          'lib32-libx11' 'lib32-libxau' 'lib32-libxdmcp' 'lib32-libxext' 'lib32-libxft'
-         'lib32-libxrender' 'lib32-libxt' 'lib32-libxtst')
+         'lib32-libxrender' 'lib32-libxt' 'lib32-libxtst' 
+         'libxcrypt-compat')
 optdepends=("eclipse: For Nios II EDS")
 
 _base_url="https://download.altera.com/akdlm/software/acdsinst"
 source=("${_base_url}/${_mainver}std${_patchver/.0/}/${_buildver}/ib_installers/QuartusLiteSetup-${pkgver}-linux.run"
         'quartus.sh' 'quartus.desktop' '51-usbblaster.rules')
-sha1sums=('ea512441cd6658c3e0225c85ccc09417110ab572'
+sha1sums=('49012e487889041962575c1cde81863457c105f5'
           '43429b170804b3960794f8c8c47bc183c8c8a14d'
           '2c7a5e22fc35eb67b0d5112a42642de341facb79'
           '66c4548944467103198f37be6ad2d8dd826020a0')
@@ -58,6 +59,9 @@ package() {
 
     # Remove useless unzip binaries
     find "${pkgdir}${_alteradir}" \( -name "unzip" -or -name "unzip32" \) -delete
+
+    # Remove duplicated file from help
+    rm -r "${pkgdir}${_alteradir}/quartus/common/help/webhelp"
 
     # Fix missing permissions
     find "${pkgdir}${_alteradir}" \! -perm /o+rwx -exec chmod o=g {} \;
