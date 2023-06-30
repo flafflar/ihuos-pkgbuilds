@@ -1,8 +1,9 @@
+# Maintainer: Achilleas Michailidis <achmichail@gmail.com>
 # Maintainer: Sébastien Luttringer
 # Contributor: Tom Gundersen <teg@jklm.no>
 
 pkgname=filesystem
-pkgver=2021.12.07
+pkgver=2022.10.18
 pkgrel=1
 pkgdesc='Base Arch Linux files'
 arch=('x86_64')
@@ -12,12 +13,12 @@ depends=('iana-etc')
 backup=('etc/crypttab' 'etc/fstab' 'etc/group' 'etc/gshadow' 'etc/host.conf'
         'etc/hosts' 'etc/issue' 'etc/ld.so.conf' 'etc/nsswitch.conf'
         'etc/passwd' 'etc/profile' 'etc/resolv.conf' 'etc/securetty'
-        'etc/shadow' 'etc/shells')
+        'etc/shadow' 'etc/shells' 'etc/subuid' 'etc/subgid')
 source=('crypttab' 'env-generator' 'fstab' 'group' 'gshadow' 'host.conf' 'hosts'
-        'issue' 'ld.so.conf' 'locale.sh' 'nsswitch.conf' 'os-release'
-        'passwd' 'profile' 'resolv.conf' 'securetty' 'shadow' 'shells' 'sysctl'
-        'sysusers' 'tmpfiles' 'ihuos-logo.svg' 'ihuos-logo.png'
-)
+        'issue' 'ld.so.conf' 'locale.sh' 'nsswitch.conf' 'os-release' 'profile'
+        'passwd' 'resolv.conf' 'securetty' 'shadow' 'shells' 'sysctl' 'sysusers'
+        'tmpfiles' 'subuid' 'subgid' 'ihuos-logo.svg' 'ihuos-logo.png'
+        'ihuos-logo-text.svg' 'ihuos-logo-text-dark.svg')
 sha256sums=('e03bede3d258d680548696623d5979c6edf03272e801a813c81ba5a5c64f4f82'
             'ed0cb4f1db4021f8c3b5ce78fdf91d2c0624708f58f36c9cf867f4d93c3bc6da'
             'e54626e74ed8fee4173b62a545ab1c3a3a069e4217a0ee8fc398d9933e9c1696'
@@ -25,22 +26,26 @@ sha256sums=('e03bede3d258d680548696623d5979c6edf03272e801a813c81ba5a5c64f4f82'
             '90d879374f77bac47f132164c1e7fc4892e994ff1d1ac376efa0c1c26ea37273'
             '4d7b647169063dfedbff5e1e22cee77bd1a4183dbcfd5e802e68939da4bbf733'
             'd9cd8a77d9e0aa5e90d7f4ed74c8745c17b525e720e28e4c44364150003c35f9'
-            'dab26b0a097da836113a46a02cc7665b483e1909f51f9ee1c2431fda165ec85f'
+            '8afcd66e0afd5b8ace98aaa6fccb8ac3876e3c65e1bb815f4118c849693f6714'
             'dad04a370e488aa85fb0a813a5c83cf6fd981ce01883fc59685447b092de84b5'
             '8ca2d8eef6fb5143c9ef7e9174ccfef59ac7ad2deee243574cd10c763156cc10'
             'c8ee7a9faf798caab178ec51afae4146f1efd8a716b7acedf28345b6c75f9697'
             'dbf2564ea68aba713005c02181f3b46d4725fdeae0874ebaee13db387717f8a0'
-            '5e06477834f51abf42ea4e8dc199632afc6afbfd8c44354685a271e9a48d2c0a'
             '5e4088ad8d0853d390fa303f6be8c3f69c33834200cba9e90f7849f1993ca8d0'
+            '5e06477834f51abf42ea4e8dc199632afc6afbfd8c44354685a271e9a48d2c0a'
             '5557d8e601b17a80d1ea7de78a9869be69637cb6a02fbfe334e22fdf64e61d4c'
             'd88be2b45b43605ff31dd83d6a138069b6c2e92bc8989b7b9ab9eba8da5f8c7b'
             '6e13705ac4d6f69cdba118c6b70c722346fd3c45224133e6bbfe28aca719563c'
             'c390b31fffc4a2b5d78ae8c89f5317aadef1f71baac09cfb467b675db1406d61'
             '89e43a0b7028f52d5c8e7fb961d962c4b4f4e9595880a6157274ddb2c7c0b6b4'
             'b5b28f395583d141d88c0b955cd05124f9b8cdf003feab01e55885b8e8c1303e'
-            'f17efd1c6480c5db1fdab4a0e3cfcd4baa44a3e1ae1210aebeb40f8d5c82f742'
+            '5d8e61479f0093852365090e84d8d95b1e7fccfab068274ee25863bde6ff3e07'
+            'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+            'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
             '1153edbe32cab9202573ce8fc1fd693f7c3fa44722ed95d4e3bf0a4a2cff00e1'
-            '2fe622d1a65ad3de7229b5d6c8b055a15bfc8ca42c7b3ad1b020012900eb35fd')
+            '2fe622d1a65ad3de7229b5d6c8b055a15bfc8ca42c7b3ad1b020012900eb35fd'
+            '81f491ea094c5b3a84a65561354443a52b90f9ad364be59a2d013f586e0f42ae'
+            '81f491ea094c5b3a84a65561354443a52b90f9ad364be59a2d013f586e0f42ae')
 
 package() {
   cd "$pkgdir"
@@ -60,7 +65,7 @@ package() {
   # setup /etc and /usr/share/factory/etc
   install -d etc/{ld.so.conf.d,skel,profile.d} usr/share/factory/etc
   for f in fstab group host.conf hosts issue ld.so.conf nsswitch.conf \
-  passwd resolv.conf securetty shells profile; do
+  passwd resolv.conf securetty shells profile subuid subgid; do
     install -m644 "$srcdir"/$f etc/
     install -m644 "$srcdir"/$f usr/share/factory/etc/
   done
@@ -124,7 +129,7 @@ package() {
   install -D -m755 "$srcdir"/env-generator usr/lib/systemd/system-environment-generators/10-arch
 
   # add logo
-  install -D -m644 "$srcdir"/ihuos-logo{.png,.svg} usr/share/pixmaps
+  install -D -m644 "$srcdir"/ihuos-logo{.png,.svg,-text.svg,-text-dark.svg} usr/share/pixmaps
 }
 
 # vim:set ts=2 sw=2 et:
