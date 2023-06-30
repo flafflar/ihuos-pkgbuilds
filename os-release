@@ -3,5 +3,5 @@ PRETTY_NAME="IHU OS"
 ID=ihuos
 BUILD_ID=rolling
 ANSI_COLOR="38;2;47;101;164"
-HOME_URL="https://cs.ihu.gr"
+HOME_URL="https://cs.ihu.gr/"
 LOGO=ihuos-logo
